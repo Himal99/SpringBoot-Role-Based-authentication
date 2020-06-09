@@ -1,0 +1,32 @@
+<div th:replace="shared/header"></div>
+
+
+<div class="container">
+    <form th:action="@{/login}" method="POST">
+        <h1 class="text-center">Please Log in</h1>
+        <div th:if="${param.error}" class="alert alert-danger">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success">
+            You have been logged out.
+        </div>
+        <div class="form-group">
+            <label for="">Username</label>
+            <input type="text" class="form-control" name="username" id="">
+
+        </div>
+        <div class="form-group">
+            <label for="">Password</label>
+            <input type="password" class="form-control" name="password" id="pw">
+
+        </div>
+        <div class="form-actions">
+            <button type="submit" class="btn">Log in</button>
+            <span class="btn btn-primary" id="showpw">Show passowrd</span>
+        </div>
+
+    </form>
+
+</div>
+
+<div th:replace="shared/footer"></div>

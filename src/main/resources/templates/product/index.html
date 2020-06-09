@@ -1,0 +1,50 @@
+<div th:replace="shared/header"></div>
+<div sec:authorize="isAuthenticated()" class="text-center">
+    <h1>Welcome <b><span sec:authentication="name">Username</span>
+    <span sec:authentication="principal.authorities">Roles</span></h1>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="logout">
+        </form>
+</div>
+<h1 class="text-center">Product page</h1>
+<div class="container p-6">
+    <div class="pull-right">
+        <a sec:authorize="hasAuthority('admin')" href="/product/create">
+            <span class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span>
+            </span>
+        </a>
+       
+    </div>
+    <table class="table table-hover table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th sec:authorize="hasAuthority('admin')">Action</th>
+            </tr>
+        </thead>
+
+        <tbody th:each="product:${products}">
+            <tr>
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td sec:authorize="hasAuthority('admin')">
+                    <a th:href="'/product/edit/'+${product.id}">
+                        <span class="btn btn-primary">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </span>
+                    </a>
+                    <a th:href="'/product/delete/'+${product.id}">
+                        <span class="btn btn-danger">
+                                <span class="glyphicon glyphicon-trash"></span>
+                        </span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="shared/footer"></div>

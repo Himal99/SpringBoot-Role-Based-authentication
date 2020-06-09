@@ -1,0 +1,1 @@
+create table tbl_product(id int primary key auto_increment, name varchar(50), price varchar(10));

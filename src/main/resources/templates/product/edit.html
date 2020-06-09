@@ -1,0 +1,22 @@
+<div th:replace="shared/header"></div>
+
+<div class="container">
+    <form action="/product" method="post">
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" th:value="${products.name}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="text" name="price" th:value="${products.price}" class="form-control">
+        </div>
+
+        <div>
+            <input type="hidden" th:value="${products.id}" name="id">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="/product"> <span class="btn btn-default">Back</span></a>
+        </div>
+
+    </form>
+</div>
+<div th:replace="shared/footer"></div>
